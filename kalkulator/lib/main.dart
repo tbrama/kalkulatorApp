@@ -43,9 +43,6 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
         equationFontSize = 48.0;
         resultFontSize = 38.0;
         equation = equation.substring(0, equation.length - 1);
-        if(equation == ""){
-          equation = "0";
-        }
       }
 
       else if(buttonText == "="){
@@ -66,13 +63,12 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
         }catch(e){
           result = "Error";
         }
-
       }
 
       else{
         equationFontSize = 48.0;
         resultFontSize = 38.0;
-        if(equation == "0"){
+        if(equation == ""){
           equation = buttonText;
         }else {
           equation = equation + buttonText;
@@ -109,30 +105,27 @@ class _SimpleCalculatorState extends State<SimpleCalculator> {
       appBar: AppBar(title: Text('Kalkulator', style: TextStyle(color: Colors.white)), backgroundColor: Colors.black,),
       body: Column(
         children: <Widget>[
-          Container(
-            
+          Expanded(child: Container(
             alignment: Alignment.centerRight,
             padding: EdgeInsets.fromLTRB(10, 20, 10, 0),
-            child: Text(equation, 
-              style: TextStyle(
-                fontSize: equationFontSize,
-                color: Colors.white
-                ),),
-          ),
-          Container(
+            child: SingleChildScrollView(
+              child: Text(equation,
+            style: TextStyle(
+              fontSize: resultFontSize,
+              color: Colors.white
+            ),
+            ),), 
+          )),
+          Expanded(child: Container(
             alignment: Alignment.centerRight,
             padding: EdgeInsets.fromLTRB(10, 30, 10, 0),
-            child: Text(result, 
-              style: TextStyle(
-                fontSize: resultFontSize,
-                color: Colors.teal.shade300),),
-          ),
-
-
-          Expanded(
-            child: Divider(),
-          ),
-
+            child: Text(result,
+            style: TextStyle(
+              fontSize: resultFontSize,
+              color: Colors.teal.shade300
+            ),
+            ),
+          )),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
